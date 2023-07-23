@@ -1,0 +1,55 @@
+package DSA;
+
+
+
+class Listnode {
+          int val;
+          ListNode next;
+          Listnode() {}
+          Listnode(int val) { this.val = val; }
+          Listnode(int val, ListNode next) { this.val = val; this.next = next; }
+     }
+public class Reverse_Nodes_in_K_Groups {
+
+        public static int size1(ListNode head)
+        {
+            int size=0;
+            while(head!=null)
+            {
+                head=head.next;
+                size++;
+            }
+            return size;
+        }
+        public ListNode reverseKGroup(ListNode head, int k) {
+            ListNode curr=head;
+            ListNode prev=null;
+            ListNode nxt=curr;
+            int count=0;
+            int size=0;
+
+
+
+
+
+            if(size1(head)<k && nxt!=null)
+            {
+
+                return nxt;
+            }
+            else
+            {
+                while(curr!=null && count<k )
+                {
+                    nxt=curr.next;
+                    curr.next=prev;
+                    prev=curr;
+                    curr=nxt;
+                    count++;
+                }
+                if(nxt!=null)
+                    head.next=reverseKGroup(nxt,k);
+            }
+            return prev;
+        }
+    }
